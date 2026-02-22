@@ -5,7 +5,7 @@
 ## 快速开始
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/gemini-business2api-deploy.git
+git clone https://github.com/zorazeroyzz/gemini-business2api-deploy.git
 cd gemini-business2api-deploy
 chmod +x deploy.sh setup.sh
 ./deploy.sh
