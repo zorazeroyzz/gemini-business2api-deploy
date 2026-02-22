@@ -1,0 +1,35 @@
+services:
+  gemini-api:
+    image: cooooookk/gemini-business2api:latest
+    container_name: gemini-business2api
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
+    security_opt:
+      - seccomp=unconfined
+    cap_add:
+      - SYS_ADMIN
+    shm_size: '512m'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 3G
+        reservations:
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/admin/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
